@@ -7,12 +7,48 @@ import Image from 'next/image'
 export default function Home() {
   const [topic, setTopic] = useState(null)
   const [image, setImage] = useState('')
+  const [time, setTime] = useState(60);
+  const [customTime, setCustomTime] = useState(null);
+  const [timerExpired, setTimerExpired] = useState(false);
 
   const setRandomTopic = async () => {
     const res = await axios.get('/api/topic')
     setTopic(res?.data?.topic?.name)
     setImage(res?.data?.topic?.image)
   }
+
+  const handleCustomTimeChange = (e: any) => {
+    setCustomTime(e.target.value);
+  };
+
+  /* Timer Logic */
+  useEffect(() => {
+
+    /* Set new Topic when time expires */
+    if (timerExpired) {
+      setRandomTopic()
+      setTimerExpired(false);
+      setTime(customTime || 60);
+    }
+
+    /* Set time to 60 or use the users custom time */
+    setTime(customTime || 60);
+    const intervalId = setInterval(() => {
+      setTime(prevTime => {
+        if (prevTime <= 1) {
+          setTimerExpired(true);
+          return 60;
+        } else {
+          return prevTime - 1;
+        }
+      });
+    }, 1000);
+
+    // Clean up the timer when the component unmounts
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [topic, customTime, timerExpired]);
 
   /* Set the initial topic once */
   useEffect(() => {
@@ -26,9 +62,7 @@ export default function Home() {
         setRandomTopic()
       }
     }
-
     document.addEventListener('keydown', handleKeyPress)
-
     return () => {
       document.removeEventListener('keydown', handleKeyPress)
     }
@@ -42,6 +76,24 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+
+        <div className={styles.options}>
+          <p>Hit 'Enter' to skip the current topic</p>
+          <p>When the timer runs out, a new topic will be chosen for you automagically!</p>
+          <p>Enter a Custom Time below if you want additional or less time.</p>
+          <p className={styles.timer}>
+            Timer: {time} seconds
+          </p>
+          <p className={styles['custom-time']}>Custom Time: <input
+            type="number"
+            value={customTime || ''}
+            onChange={handleCustomTimeChange}
+            min="1"
+            max="1000"
+            step="1"
+          /></p>
+        </div>
+
         <p style={{ fontSize: '130px', zIndex: 2 }}>{topic}</p>
         <Image width={100} height={100} alt="" src={image} unoptimized />
       </main>
