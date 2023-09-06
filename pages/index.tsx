@@ -44,7 +44,7 @@ export default function Home() {
       });
     }, 1000);
 
-    // Clean up the timer when the component unmounts
+    /* Clean up Interval when component unmounts */
     return () => {
       clearInterval(intervalId);
     };
@@ -68,6 +68,7 @@ export default function Home() {
     }
   }, [])
 
+  /* JSX */
   return (
     <div className={styles.container}>
       <Head>
@@ -94,10 +95,11 @@ export default function Home() {
           /></p>
         </div>
 
-        <p style={{ fontSize: '130px', zIndex: 2 }}>{topic}</p>
+        <p style={{ fontSize: 'max(5.5vw, 130px)' }}>{topic}</p>
         <Image width={100} height={100} alt="" src={image} unoptimized />
       </main>
 
+      {/* Optional FOOTER */}
       {/* <footer className={styles.footer}>
         <a
           href="https://www.udemy.com/course/say-no-to-people-pleasing-become-the-assertive-and-authentic-you/"
