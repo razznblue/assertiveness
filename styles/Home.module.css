@@ -35,6 +35,21 @@
   left: 0;
 } */
 
+.options {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.timer {
+  font-size: max(2vw, 16px);
+}
+
+.custom-time input {
+  outline: 2px solid purple;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+
 .footer {
   width: 100%;
   height: 100px;
