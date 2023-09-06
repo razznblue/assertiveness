@@ -8,8 +8,8 @@ A helper tool to practice speaking more clearly in a consice manner. Improve you
 ## Topics
 topics are processed from a file, to the database, setting the image by utilizing the unsplash apis. On the home page, it calls the db for a random topic displaying it to the user along with the image.
 
-## Future Ideas
- - Implement configurable timer for how long to speak about the topic
+## Incoming Features
+ - ✔️ Implement configurable timer for how long to speak about the topic(Implemented with [this commit](https://github.com/razznblue/assertiveness/commit/929b0a5a80bec5f9c2922747da38a5f1fd265472))
  - Record your speaking session
  - Rate your session
  - User session so data can be saved per user
