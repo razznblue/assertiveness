@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useState, useEffect } from 'react'
@@ -7,9 +8,9 @@ import Image from 'next/image'
 export default function Home() {
   const [topic, setTopic] = useState(null)
   const [image, setImage] = useState('')
-  const [time, setTime] = useState(60);
-  const [customTime, setCustomTime] = useState(null);
-  const [timerExpired, setTimerExpired] = useState(false);
+  const [time, setTime] = useState(60)
+  const [customTime, setCustomTime] = useState(null)
+  const [timerExpired, setTimerExpired] = useState(false)
 
   const setRandomTopic = async () => {
     const res = await axios.get('/api/topic')
@@ -18,37 +19,36 @@ export default function Home() {
   }
 
   const handleCustomTimeChange = (e: any) => {
-    setCustomTime(e.target.value);
-  };
+    setCustomTime(e.target.value)
+  }
 
   /* Timer Logic */
   useEffect(() => {
-
     /* Set new Topic when time expires */
     if (timerExpired) {
       setRandomTopic()
-      setTimerExpired(false);
-      setTime(customTime || 60);
+      setTimerExpired(false)
+      setTime(customTime || 60)
     }
 
     /* Set time to 60 or use the users custom time */
-    setTime(customTime || 60);
+    setTime(customTime || 60)
     const intervalId = setInterval(() => {
-      setTime(prevTime => {
+      setTime((prevTime) => {
         if (prevTime <= 1) {
-          setTimerExpired(true);
-          return 60;
+          setTimerExpired(true)
+          return 60
         } else {
-          return prevTime - 1;
+          return prevTime - 1
         }
-      });
-    }, 1000);
+      })
+    }, 1000)
 
     /* Clean up Interval when component unmounts */
     return () => {
-      clearInterval(intervalId);
-    };
-  }, [topic, customTime, timerExpired]);
+      clearInterval(intervalId)
+    }
+  }, [topic, customTime, timerExpired])
 
   /* Set the initial topic once */
   useEffect(() => {
@@ -77,22 +77,22 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-
         <div className={styles.options}>
           <p>Hit 'Enter' to skip the current topic</p>
           <p>When the timer runs out, a new topic will be chosen for you automagically!</p>
           <p>Enter a Custom Time below if you want additional or less time.</p>
-          <p className={styles.timer}>
-            Timer: {time} seconds
+          <p className={styles.timer}>Timer: {time} seconds</p>
+          <p className={styles['custom-time']}>
+            Custom Time:{' '}
+            <input
+              type="number"
+              value={customTime || ''}
+              onChange={handleCustomTimeChange}
+              min="1"
+              max="1000"
+              step="1"
+            />
           </p>
-          <p className={styles['custom-time']}>Custom Time: <input
-            type="number"
-            value={customTime || ''}
-            onChange={handleCustomTimeChange}
-            min="1"
-            max="1000"
-            step="1"
-          /></p>
         </div>
 
         <p style={{ fontSize: 'max(5.5vw, 130px)' }}>{topic}</p>
