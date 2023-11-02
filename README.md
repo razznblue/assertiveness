@@ -1,9 +1,12 @@
 # 🚀 Assertiveness Training
-A helper tool to practice speaking more clearly in a consice manner. Improve your assertiveness!! Displays a random topic for you to talk about. 
+A helper tool to practice speaking more clearly in a concise manner. Improve your assertiveness!! Displays a random topic for you to talk about. 
+
+## How To Use
+A topic and image is shown to you on the screen. Talk about the topic for the selected amount of time. When the timer runs out, the app will automatically display a new one. You can do this by yourself or with a partner! The timer is also customizable.
 
 ## Routes
  - `/api/topic` - Returns a random topic from DB
- - `/api/process/names` - Processes any new names added to the list. Include an optional `size` parameter to specify the number of topics to process at a time.
+ - `/api/process/names` - Processes any new names added to the list. Include an optional `size` parameter to specify the number of topics to process at a time. You can add a new name to the list [here](./data/topics.ts).
 
 ## Topics
 topics are processed from a file, to the database, setting the image by utilizing the unsplash apis. On the home page, it calls the db for a random topic displaying it to the user along with the image.
@@ -13,7 +16,6 @@ topics are processed from a file, to the database, setting the image by utilizin
  - Record your speaking session
  - Rate your session
  - User session so data can be saved per user
-
 
 ### Credits
 This PROJECT was based off a NextJS Template!
