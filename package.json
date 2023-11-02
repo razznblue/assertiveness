@@ -1,15 +1,8 @@
 {
-  "name": "nextjs-starter",
-  "description": "A Next.js starter that includes all you need to build amazing projects",
+  "name": "assertiveness-training",
+  "description": "A Tool to help you practice your speaking ability and assertiveness skills",
   "version": "1.0.0",
-  "private": true,
-  "author": "abel chang<cwuyiqing@gmail.com>",
   "license": "MIT",
-  "keywords": [
-    "nextjs",
-    "starter",
-    "typescript"
-  ],
   "scripts": {
     "dev": "next",
     "build": "next build",
