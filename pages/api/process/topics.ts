@@ -9,9 +9,13 @@ const getTopicImage = async (topic: string) => {
     console.log(`getting image for topic ${topic}`)
     const url = `https://api.unsplash.com/search/photos?query=${topic}&client_id=${process.env.UNSPLASH_ACCESS_KEY}`
     const res = await axios.get(url)
-    return res?.data?.results[0].urls?.regular
+    if (res?.data && res?.data?.results) {
+      return res?.data?.results[0].urls?.regular
+    } else {
+      return console.error('Could not find image on unsplash response', res?.data)
+    }
   } catch (err: any) {
-    console.error(`Error retrieving image for topic ${topic}`, err)
+    return console.error(`Error retrieving image for topic ${topic}`, err)
   }
 }
 
