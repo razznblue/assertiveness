@@ -2,10 +2,13 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import Image from 'next/image'
 
 export default function Home() {
+  const { data: session } = useSession()
+
   const [topic, setTopic] = useState(null)
   const [image, setImage] = useState('')
   const [time, setTime] = useState(60)
@@ -67,6 +70,23 @@ export default function Home() {
       document.removeEventListener('keydown', handleKeyPress)
     }
   }, [])
+
+  if (!session) {
+    return (
+      <div className={styles.container}>
+        <Head>
+          <title>Assertiveness | Training</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <h1 className="text-white mb-5 text-2xl">
+          Practice your speaking skills to become more confident and assertive in life!
+        </h1>
+        <Image width="500" height="500" src="/images/logo.webp" alt="assertive-logo" />
+        {/* <p className="text-white mb-5">Click Sign In to get started!</p> */}
+      </div>
+    )
+  }
 
   /* JSX */
   return (

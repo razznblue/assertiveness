@@ -18,3 +18,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --background-color: #0A192F;
+}

@@ -21,14 +21,17 @@
   "dependencies": {
     "@typegoose/typegoose": "11.4.1",
     "axios": "1.5.0",
+    "jsonwebtoken": "9.0.2",
     "mongoose": "^7.4.2",
     "next": "13.4.13",
+    "next-auth": "4.24.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
+    "@types/jsonwebtoken": "9.0.5",
     "@types/node": "20.4.9",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
