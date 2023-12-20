@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import Head from 'next/head'
+// import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
@@ -74,11 +74,6 @@ export default function Home() {
   if (!session) {
     return (
       <div className={styles.container}>
-        <Head>
-          <title>Assertiveness | Training</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
         <h1 className="text-white mb-5 text-2xl">
           Practice your speaking skills to become more confident and assertive in life!
         </h1>
@@ -91,11 +86,6 @@ export default function Home() {
   /* JSX */
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Assertiveness | Training</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <div className={styles.options}>
           <p>Hit 'Enter' to skip the current topic</p>
