@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-// import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'

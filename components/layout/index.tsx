@@ -17,10 +17,6 @@ export function Layout({ children }: { children: ReactNode }) {
             >
               <span>
                 <Image src="/images/logo.webp" alt="" height="40" width="40" />
-                {/* <svg height={26} viewBox="0 0 75 65" fill="#2f2f9e">
-                  <title>Vercel Logo</title>
-                  <path d="M37.59.25l36.95 64H.64l36.95-64z" />
-                </svg> */}
               </span>
             </Link>
             <ul className="flex items-center content-center">
