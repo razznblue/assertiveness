@@ -2,9 +2,6 @@
 import { primaryColor } from '@/util/constants'
 
 const Button = ({ text, link, backgroundColor, onClick }) => {
-  // const bgColor = backgroundColor ? (backgroundColor.includes('#') ? `bg-[${backgroundColor}]` : `bg-${backgroundColor}`) : 'white';
-  // console.log(bgColor);
-
   let bgColor = 'bg-white'
   if (backgroundColor === 'primary') {
     bgColor = `bg-[${primaryColor}]`
