@@ -22,7 +22,7 @@ export default function Home() {
         ) : (
           <>
             <div id="top-content" className="flex flex-col items-center">
-              <h1 className={`text-[${primaryColor}] text-3xl`}>Hello {username}!</h1>
+              <h1 className={`text-[${primaryColor(true)}] text-3xl`}>Hello {username}!</h1>
               <p className="text-white p-3 m-2 text-lg w-1/2 text-center">
                 "Being passive gets you nowhere. Being aggressive gets you noticed. Being assertive
                 gets you respect." - Steve Maraboli

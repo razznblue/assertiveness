@@ -2,7 +2,9 @@
 export const defaultTimer = '60'
 
 /* COLORS */
-export const primaryColor = '#449E90'
+export const primaryColor = (raw: boolean) => {
+  return raw ? '#449E90' : 'bg-[#449E90]'
+}
 
 /* ASSETS */
 export const assetServiceUrl = 'https://asset-service-drive.onrender.com'

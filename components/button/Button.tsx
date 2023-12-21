@@ -4,7 +4,7 @@ import { primaryColor } from '@/util/constants'
 const Button = ({ text, link, backgroundColor, onClick }) => {
   let bgColor = 'bg-white'
   if (backgroundColor === 'primary') {
-    bgColor = `bg-[${primaryColor}]`
+    bgColor = primaryColor(false)
   }
 
   return (
