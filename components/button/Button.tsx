@@ -5,6 +5,7 @@ const Button = ({ text, link, backgroundColor, onClick }) => {
   let bgColor = 'bg-white'
   if (backgroundColor === 'primary') {
     bgColor = primaryColor(false)
+    console.log(`bgColor is now ${bgColor}`)
   }
 
   return (
