@@ -3,7 +3,6 @@
 import Button from '@/components/button/Button'
 import { useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
-import { primaryColor } from '@/util/constants'
 
 export default function Home() {
   const { data: session } = useSession()
@@ -22,7 +21,7 @@ export default function Home() {
         ) : (
           <>
             <div id="top-content" className="flex flex-col items-center">
-              <h1 className={`text-[${primaryColor(true)}] text-3xl`}>Hello {username}!</h1>
+              <h1 className="text-primary text-3xl">Hello {username}!</h1>
               <p className="text-white p-3 m-2 text-lg w-1/2 text-center">
                 "Being passive gets you nowhere. Being aggressive gets you noticed. Being assertive
                 gets you respect." - Steve Maraboli
@@ -35,10 +34,30 @@ export default function Home() {
               </div>
 
               <div id="buttons" className="grid grid-cols-2 gap-2">
-                <Button text="My Profile" link="/" backgroundColor="primary" onClick={() => {}} />
-                <Button text="My Progress" link="/" backgroundColor="primary" onClick={() => {}} />
-                <Button text="New Session" link="/" backgroundColor="primary" onClick={() => {}} />
-                <Button text="My Settings" link="/" backgroundColor="primary" onClick={() => {}} />
+                <Button
+                  text="My Profile"
+                  link="/"
+                  backgroundColor="bg-primary"
+                  onClick={() => {}}
+                />
+                <Button
+                  text="My Progress"
+                  link="/"
+                  backgroundColor="bg-primary"
+                  onClick={() => {}}
+                />
+                <Button
+                  text="New Session"
+                  link="/"
+                  backgroundColor="bg-primary"
+                  onClick={() => {}}
+                />
+                <Button
+                  text="My Settings"
+                  link="/"
+                  backgroundColor="bg-primary"
+                  onClick={() => {}}
+                />
               </div>
             </div>
           </>
