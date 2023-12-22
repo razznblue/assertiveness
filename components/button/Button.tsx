@@ -1,14 +1,12 @@
 /* eslint-disable no-param-reassign */
-const Button = ({ text, link, backgroundColor, onClick }) => {
+const Button = ({ text, link, backgroundColor }) => {
   return (
-    <div
-      className={`${backgroundColor} text-center p-2 px-4 m-2 rounded-md min-w-32 cursor-pointer`}
-      onClick={onClick ? () => onClick() : null}
+    <a
+      className={`${backgroundColor} text-center p-2 px-4 m-2 rounded-md min-w-32 cursor-pointer font-bold`}
+      href={link}
     >
-      <p>
-        <a href={link}>{text}</a>
-      </p>
-    </div>
+      <p>{text}</p>
+    </a>
   )
 }
 

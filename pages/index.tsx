@@ -7,9 +7,6 @@ import { signIn, useSession } from 'next-auth/react'
 export default function Home() {
   const { data: session } = useSession()
 
-  /* Hooks */
-  const [username, setUsername] = useState('Kyle')
-
   /* JSX */
   return (
     <div className="flex items-center justify-center h-screen">
@@ -21,7 +18,7 @@ export default function Home() {
         ) : (
           <>
             <div id="top-content" className="flex flex-col items-center">
-              <h1 className="text-primary text-3xl">Hello {username}!</h1>
+              <h1 className="text-primary text-3xl font-bold">Hello {session?.user?.name}!</h1>
               <p className="text-white p-3 m-2 text-lg w-1/2 text-center">
                 "Being passive gets you nowhere. Being aggressive gets you noticed. Being assertive
                 gets you respect." - Steve Maraboli
@@ -34,30 +31,10 @@ export default function Home() {
               </div>
 
               <div id="buttons" className="grid grid-cols-2 gap-2">
-                <Button
-                  text="My Profile"
-                  link="/"
-                  backgroundColor="bg-primary"
-                  onClick={() => {}}
-                />
-                <Button
-                  text="My Progress"
-                  link="/"
-                  backgroundColor="bg-primary"
-                  onClick={() => {}}
-                />
-                <Button
-                  text="New Session"
-                  link="/"
-                  backgroundColor="bg-primary"
-                  onClick={() => {}}
-                />
-                <Button
-                  text="My Settings"
-                  link="/"
-                  backgroundColor="bg-primary"
-                  onClick={() => {}}
-                />
+                <Button text="My Profile" link="/" backgroundColor="bg-primary" />
+                <Button text="My Progress" link="/" backgroundColor="bg-primary" />
+                <Button text="New Session" link="/" backgroundColor="bg-primary" />
+                <Button text="My Settings" link="/" backgroundColor="bg-primary" />
               </div>
             </div>
           </>
