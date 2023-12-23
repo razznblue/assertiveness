@@ -65,6 +65,10 @@ export const authOptions = {
               name: provider,
               providerId: providerId,
             },
+            settings: {
+              defaultTimer: 60,
+              autofillSessionName: false,
+            },
           })
           console.log('created new user, saweeeet')
           return newUser.data

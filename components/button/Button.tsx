@@ -1,12 +1,22 @@
 /* eslint-disable no-param-reassign */
-const Button = ({ text, link, backgroundColor }) => {
+const Button = ({ text, link, backgroundColor, clickFunction, disableLink }) => {
+  const handleClick = async () => {
+    if (clickFunction) {
+      await clickFunction()
+    }
+
+    if (!disableLink) {
+      window.location.href = link
+    }
+  }
+
   return (
-    <a
+    <div
       className={`${backgroundColor} text-center p-2 px-4 m-2 rounded-md min-w-32 cursor-pointer font-bold`}
-      href={link}
+      onClick={handleClick}
     >
       <p>{text}</p>
-    </a>
+    </div>
   )
 }
 

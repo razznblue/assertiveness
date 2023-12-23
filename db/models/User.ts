@@ -10,6 +10,15 @@ export class UserProvider {
   public providerId?: string
 }
 
+@modelOptions({ schemaOptions: { versionKey: false, timestamps: false, _id: false } })
+export class UserSettings {
+  @prop()
+  public defaultTimer?: number
+
+  @prop()
+  public autofillSessionName?: boolean
+}
+
 @modelOptions({ schemaOptions: { collection: 'User', versionKey: false, timestamps: true } })
 class User {
   @prop({ required: true })
@@ -26,6 +35,9 @@ class User {
 
   @prop()
   public provider: UserProvider
+
+  @prop()
+  public settings: UserSettings
 
   // @prop({ ref: () => PlayerStats })
   // public playerStatsId: typegoose.Ref<PlayerStats>
