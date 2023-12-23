@@ -11,11 +11,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const email: string = req?.body?.email
     const provider = req?.body?.provider
 
-    console.log('dataToSave')
-    console.log(username)
-    console.log(email)
-    console.log(provider)
-
     const existingPlayer = await User.exists({ username: username, email: email })
     if (!existingPlayer) {
       try {

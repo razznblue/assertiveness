@@ -342,6 +342,8 @@ const topics: string[] = [
   'Shirt',
   'Reindeer',
   'Sea Shore',
+  'Squishmallow',
+  'Crayon',
 ]
 
 export default topics
