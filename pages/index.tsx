@@ -3,6 +3,7 @@
 import Button from '@/components/button/Button'
 import { useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
+import Image from 'next/image'
 
 export default function Home() {
   const { data: session } = useSession()
@@ -12,9 +13,10 @@ export default function Home() {
     <div className="flex items-center justify-center h-screen">
       <main className="flex flex-col items-center justify-evenly h-full">
         {!session ? (
-          <p className="text-white p-3 m-2 text-4xl text-center">
-            Please Sign In to start practicing!
-          </p>
+          <>
+            <p className="text-white p-3 m-2 text-4xl text-center">Sign In to start practicing!</p>
+            <Image src="/images/logo.webp" alt="" height="500" width="500" />
+          </>
         ) : (
           <>
             <div id="top-content" className="flex flex-col items-center">
