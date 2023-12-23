@@ -1,11 +1,13 @@
 /* eslint-disable no-param-reassign */
-const Button = ({ text, link, backgroundColor, clickFunction }) => {
-  const handleClick = () => {
+const Button = ({ text, link, backgroundColor, clickFunction, disableLink }) => {
+  const handleClick = async () => {
     if (clickFunction) {
-      clickFunction()
+      await clickFunction()
     }
 
-    window.location.href = link
+    if (!disableLink) {
+      window.location.href = link
+    }
   }
 
   return (

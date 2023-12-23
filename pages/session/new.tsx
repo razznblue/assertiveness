@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import Button from '@/components/button/Button'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import axios from 'axios'
@@ -10,23 +10,14 @@ import { generateRandomString, getInitials } from '@/util/functions'
 export default function NewSession() {
   const { data: session } = useSession()
 
+  /* Hooks */
+  const [userId, setUserId] = useState(null)
+
   const [sessionName, setSessionName] = useState('')
   const [topic, setTopic] = useState('')
   const [timer, setTimer] = useState(60)
 
-  const setRandomTopic = async () => {
-    const res = await axios.get('/api/topic')
-    setTopic(res?.data?.topic?.name)
-  }
-
-  const createNewTopic = async () => {
-    if (topic && topic !== '') {
-      const res = await axios.post('/api/topics', { name: topic })
-      if (res?.status === 201) {
-        console.log(`Created topic ${topic}`)
-      }
-    }
-  }
+  const [timerChecked, setTimerChekced] = useState(false)
 
   const generateSessionName = () => {
     const randomString = generateRandomString(16)
@@ -35,6 +26,48 @@ export default function NewSession() {
       ? setSessionName(`${initials}-${topic?.toLowerCase()}-${randomString}`)
       : setSessionName(`${initials}-${randomString}`)
   }
+
+  const setRandomTopic = async () => {
+    const res = await axios.get('/api/topic')
+    setTopic(res?.data?.topic?.name)
+  }
+
+  const createNewTopic = async () => {
+    if (topic && topic !== '') {
+      await axios.post('/api/topics', { name: topic })
+    }
+  }
+
+  const handleTimerChange = async (e) => {
+    setTimer(Number.isNaN(e?.target?.valueAsNumber) ? '' : e?.target?.valueAsNumber)
+    const newTimer = Number.isNaN(e?.target?.valueAsNumber) ? '' : e?.target?.valueAsNumber
+    if (timerChecked && newTimer !== '') {
+      await axios.patch(`/api/users/${userId}`, { settings: { defaultTimer: newTimer } })
+    }
+  }
+
+  const updateTimerPreference = async (e) => {
+    setTimerChekced(e?.target?.checked)
+    if (timerChecked && !Number.isNaN(timer) && userId) {
+      await axios.patch(`/api/users/${userId}`, { settings: { defaultTimer: timer } })
+    }
+  }
+
+  const handleStartClick = async () => {
+    await createNewTopic()
+  }
+
+  /* Fecth UserId */
+  useEffect(() => {
+    const fetchUserId = async () => {
+      if (session?.user?.name) {
+        const res = await axios.get(`/api/users?username=${session?.user?.name}`)
+        setUserId(res?.data?._id)
+        setTimer(res?.data?.settings?.defaultTimer)
+      }
+    }
+    fetchUserId()
+  }, [session])
 
   /* JSX */
   return (
@@ -88,13 +121,17 @@ export default function NewSession() {
                       type="number"
                       max="120"
                       value={timer}
-                      onChange={(e) => setTimer(e?.target?.valueAsNumber)}
+                      onChange={(e) => handleTimerChange(e)}
                       className="bg-gray rounded-md w-1/2 text-black p-1 px-2"
                     />
                   </div>
                   <div className="setting flex items-center justify-center w-full text-sm pt-1">
                     <p>Make this my default timer?</p>
-                    <input type="checkbox" className="bg-gray rounded-md mx-2" />
+                    <input
+                      onChange={(e) => updateTimerPreference(e)}
+                      type="checkbox"
+                      className="bg-gray rounded-md mx-2"
+                    />
                   </div>
                 </div>
               </div>
@@ -104,12 +141,19 @@ export default function NewSession() {
               id="bottom-content"
               className="absolute bottom-0 px-4 py-2 w-full border-t border-gray flex items-center justify-between"
             >
-              <Button text="← Back" link="/" backgroundColor="bg-white" clickFunction={null} />
+              <Button
+                text="← Back"
+                link="/"
+                backgroundColor="bg-white"
+                clickFunction={null}
+                disableLink={false}
+              />
               <Button
                 text="Start"
                 link="/session/:id"
                 backgroundColor="bg-primary"
-                clickFunction={createNewTopic}
+                clickFunction={handleStartClick}
+                disableLink={false}
               />
             </div>
           </>

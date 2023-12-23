@@ -12,10 +12,10 @@ export class UserProvider {
 
 @modelOptions({ schemaOptions: { versionKey: false, timestamps: false, _id: false } })
 export class UserSettings {
-  @prop({ default: 60 })
+  @prop()
   public defaultTimer?: number
 
-  @prop({ default: false })
+  @prop()
   public autofillSessionName?: boolean
 }
 

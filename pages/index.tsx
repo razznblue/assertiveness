@@ -38,24 +38,28 @@ export default function Home() {
                   link="/"
                   backgroundColor="bg-primary"
                   clickFunction={null}
+                  disableLink={false}
                 />
                 <Button
                   text="My Progress"
                   link="/"
                   backgroundColor="bg-primary"
                   clickFunction={null}
+                  disableLink={false}
                 />
                 <Button
                   text="New Session"
                   link="/session/new"
                   backgroundColor="bg-primary"
                   clickFunction={null}
+                  disableLink={false}
                 />
                 <Button
                   text="My Settings"
                   link="/"
                   backgroundColor="bg-primary"
                   clickFunction={null}
+                  disableLink={false}
                 />
               </div>
             </div>
